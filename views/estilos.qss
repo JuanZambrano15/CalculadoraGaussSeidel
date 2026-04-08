@@ -1,33 +1,41 @@
-/* Configuración General de la Ventana */
+/**
+ * ESTILOS DE LA INTERFAZ DE USUARIO (QSS)
+ * Proyecto: Gauss-Seidel Solver
+ * Tema: Dark Industrial / Engineering
+ */
+
+/* Contenedor principal de la aplicación */
 QMainWindow {
-    background-color: #1e1e1e;
+    background-color: #1e1e1e; /* Fondo oscuro profundo para reducir fatiga visual */
 }
 
+/* Etiquetas de texto generales */
 QLabel {
     color: #e0e0e0;
     font-family: 'Segoe UI', Arial;
     font-size: 13px;
 }
 
-/* Estilo de los Campos de Entrada (Ecuaciones) */
+/* Campos de entrada de datos (Coeficientes y Variables) */
 QLineEdit {
     background-color: #2d2d2d;
-    color: #00ff41; /* Verde tipo consola */
+    color: #00ff41; /* Verde neón tipo terminal para resaltar datos numéricos */
     border: 1px solid #3f3f3f;
     border-radius: 4px;
     padding: 5px;
-    font-family: 'Consolas', monospace;
+    font-family: 'Consolas', monospace; /* Fuente monoespaciada para alineación numérica */
     font-size: 14px;
 }
 
+/* Estado activo de los campos de entrada */
 QLineEdit:focus {
-    border: 1px solid #2196F3;
+    border: 1px solid #2196F3; /* Resalte en azul al seleccionar el campo */
     background-color: #333333;
 }
 
-/* Botones de la Calculadora Web */
+/* Botones del teclado matemático especial */
 QPushButton {
-    background-color: #02332a;
+    background-color: #02332a; /* Verde oscuro institucional */
     color: #ffffff;
     border: 1px solid #555555;
     border-radius: 4px;
@@ -35,12 +43,13 @@ QPushButton {
     font-size: 12px;
 }
 
+/* Feedback visual al pasar el cursor sobre botones genéricos */
 QPushButton:hover {
     background-color: #444444;
     border-color: #2196F3;
 }
 
-/* Botón Principal de Resolver */
+/* Botón de acción principal (Call to Action) */
 QPushButton#btn_resolver {
     background-color: #2196F3;
     color: white;
@@ -50,11 +59,12 @@ QPushButton#btn_resolver {
     margin-top: 10px;
 }
 
+/* Feedback visual para el botón de resolución */
 QPushButton#btn_resolver:hover {
     background-color: #1976D2;
 }
 
-/* Tabla de Resultados */
+/* Panel de visualización de datos (Tabla de iteraciones) */
 QTableWidget {
     background-color: #252525;
     color: #ffffff;
@@ -63,24 +73,27 @@ QTableWidget {
     font-family: 'Segoe UI';
 }
 
+/* Estilo de los encabezados de la tabla de resultados */
 QHeaderView::section {
     background-color: #333333;
-    color: #2196F3;
+    color: #2196F3; /* Azul para identificar rápidamente las columnas de datos */
     padding: 5px;
     border: 1px solid #1e1e1e;
     font-weight: bold;
 }
 
+/* Espaciado interno de las celdas de datos */
 QTableWidget::item {
     padding: 5px;
 }
 
-/* Barra de Desplazamiento (Scrollbar) */
+/* Personalización de la barra de desplazamiento vertical */
 QScrollBar:vertical {
     background: #2d2d2d;
     width: 10px;
 }
 
+/* Estilo del control deslizante (Scroll handle) */
 QScrollBar::handle:vertical {
     background: #555555;
     border-radius: 5px;
