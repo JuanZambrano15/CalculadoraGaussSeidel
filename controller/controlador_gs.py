@@ -38,11 +38,12 @@ class ControladorGaussSeidel:
             str: Cadena formateada lista para ser evaluada matemáticamente.
         """
         reemplazos = {
-            '√': 'sqrt',
-            '÷': '/',
-            '²': '**2',
-            'π': 'pi'
-        }
+        '√': 'sqrt',
+        '÷': '/',
+        '²': '**2',
+        'π': 'pi',
+        'e': 'E'  # SymPy reconoce 'E' (mayúscula) como la constante de Euler
+    }
         for visual, codigo in reemplazos.items():
             texto = texto.replace(visual, codigo)
         return texto

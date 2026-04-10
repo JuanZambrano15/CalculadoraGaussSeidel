@@ -42,7 +42,7 @@ class VentanaPrincipal(QMainWindow):
         
         # Mapeo de etiquetas visuales y sus valores lógicos correspondientes
         funciones = [('½', '/'), ('√', 'sqrt()'), ('x²', '**2'), ('π', 'pi'), 
-                     ('(', '('), (')', ')'), ('CE', 'clear')]
+                 ('e', 'e'), ('(', '('), (')', ')'), ('CE', 'clear')]
         
         for label, val in funciones:
             btn = QPushButton(label)
