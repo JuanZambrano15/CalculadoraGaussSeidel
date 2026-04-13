@@ -73,7 +73,7 @@ def ordenar_para_diagonal_dominante(A, b):
             return A_perm, b_perm, True
     return A, b, False
 
-def resolver_gauss_seidel(A_orig, b_orig, tolerancia, max_iteraciones=100):
+def resolver_gauss_seidel(A_orig, b_orig, tolerancia,indice_criterio, max_iteraciones=100):
     """
     Ejecuta el método iterativo de Gauss-Seidel para resolver sistemas de ecuaciones lineales.
     
@@ -131,16 +131,23 @@ def resolver_gauss_seidel(A_orig, b_orig, tolerancia, max_iteraciones=100):
             errores_step.append(calcular_error(x[i], x_ant[i]))
 
         # Evaluación del criterio de parada basado en el error máximo de la iteración
-        e_max = max(errores_step)
+        if indice_criterio == 0: # "Todas"
+            e_comparacion = max(errores_step)
+        elif indice_criterio == 1: # "Solo x"
+            e_comparacion = errores_step[0]
+        elif indice_criterio == 2: # "Solo y"
+            e_comparacion = errores_step[1]
+        else: # "Solo z"
+            e_comparacion = errores_step[2]
         pasos.append({
             'iter': k,
             'x': x[:],
             'errores': errores_step,
-            'e_max': e_max
+            'e_max': e_comparacion
         })
         
         # Condición de salida por convergencia exitosa
-        if e_max < tolerancia:
+        if e_comparacion < tolerancia:
             return pasos, True, info_proceso
 
     # Retorno en caso de alcanzar el máximo de iteraciones sin converger

@@ -78,9 +78,9 @@ class ControladorGaussSeidel:
             
             # 3. Recuperación de la tolerancia definida por el usuario
             tol = float(self.vista.tol_input.text())
-            
+            indice_criterio = self.vista.criterio_stop.currentIndex()
             # 4. Invocación del núcleo algorítmico en la capa del modelo
-            pasos, exito, info = self.modelo.resolver_gauss_seidel(A, b, tol)
+            pasos, exito, info = self.modelo.resolver_gauss_seidel(A, b, tol, indice_criterio)
             
             # 5. Validación de la integridad de la solución
             # Si el algoritmo no converge o no se generaron iteraciones, se detiene el flujo.

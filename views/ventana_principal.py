@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                              QGridLayout, QLineEdit, QPushButton, QLabel, 
-                             QTableWidget, QTableWidgetItem, QHeaderView, QFrame, QScrollArea)
+                             QTableWidget, QTableWidgetItem, QHeaderView, QFrame, QScrollArea, QComboBox)
 from PyQt6.QtCore import Qt
 
 class VentanaPrincipal(QMainWindow):
@@ -105,9 +105,13 @@ class VentanaPrincipal(QMainWindow):
         config_layout = QHBoxLayout()
         self.tol_input = QLineEdit("0.0001")
         self.iter_input = QLineEdit("100")
+        self.criterio_stop = QComboBox()
+        self.criterio_stop.addItems(["Todas (x, y, z)", "Solo x", "Solo y", "Solo z"])
         
         config_layout.addWidget(QLabel("Tolerancia (%):"))
         config_layout.addWidget(self.tol_input)
+        config_layout.addWidget(QLabel("Parar con:")) 
+        config_layout.addWidget(self.criterio_stop)
         config_layout.addWidget(QLabel("Max Iteraciones:"))
         config_layout.addWidget(self.iter_input)
         
@@ -218,6 +222,7 @@ class VentanaPrincipal(QMainWindow):
             <ul>
                 <li><b>Tolerancia:</b> Es el error máximo permitido. Entre más pequeño (ej. 0.00001), más preciso pero tardará más iteraciones.</li>
                 <li><b>Max Iteraciones:</b> Límite de seguridad para evitar que el programa se trabe si el sistema no tiene solución.</li>
+                <li><b>Parar con:</b> Permite elegir si el algoritmo debe detenerse cuando <b>todas</b> las variables alcancen la tolerancia, o si solo le interesa la convergencia de una variable específica (x, y, o z).</li>
             </ul>
 
             <h3 style='color: #FF9800;'>⚠️ Recomendaciones de Funcionamiento:</h3>
