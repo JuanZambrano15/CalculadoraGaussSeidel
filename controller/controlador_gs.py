@@ -23,6 +23,7 @@ class ControladorGaussSeidel:
         
         # Conexión del evento click del botón principal para iniciar el procesamiento
         self.vista.btn_resolver.clicked.connect(self.procesar_sistema)
+        self.vista.btn_manual.clicked.connect(self.vista.mostrar_manual)
 
     def limpiar_texto_matematico(self, texto):
         """

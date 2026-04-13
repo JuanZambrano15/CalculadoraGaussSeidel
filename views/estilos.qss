@@ -98,3 +98,12 @@ QScrollBar::handle:vertical {
     background: #555555;
     border-radius: 5px;
 }
+QPushButton#btn_manual {
+    background-color: #795548; /* Marrón tipo cuero/madera para manual */
+    color: white;
+    border: 1px solid #3e2723;
+}
+
+QPushButton#btn_manual:hover {
+    background-color: #8d6e63;
+}

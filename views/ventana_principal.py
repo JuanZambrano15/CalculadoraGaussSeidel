@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                              QGridLayout, QLineEdit, QPushButton, QLabel, 
-                             QTableWidget, QTableWidgetItem, QHeaderView, QFrame)
+                             QTableWidget, QTableWidgetItem, QHeaderView, QFrame, QScrollArea)
 from PyQt6.QtCore import Qt
 
 class VentanaPrincipal(QMainWindow):
@@ -57,6 +57,14 @@ class VentanaPrincipal(QMainWindow):
             buttons_layout.addWidget(btn)
         
         buttons_layout.addStretch()
+        self.btn_manual = QPushButton(" Manual de Usuario")
+        self.btn_manual.setFixedWidth(150)
+        self.btn_manual.setStyleSheet("""
+            background-color: #FF9800; 
+            color: white; 
+            font-weight: bold;
+        """)
+        buttons_layout.addWidget(self.btn_manual)
         self.main_layout.addLayout(buttons_layout)
 
     def setup_inputs(self):
@@ -184,3 +192,45 @@ class VentanaPrincipal(QMainWindow):
             
             # Devuelve el foco al widget para permitir seguir escribiendo inmediatamente
             focused_widget.setFocus()
+    def mostrar_manual(self):
+        from PyQt6.QtWidgets import QDialog, QTextEdit
+
+        ventana_manual = QDialog(self)
+        ventana_manual.setWindowTitle("Manual de Usuario e Instrucciones")
+        ventana_manual.setMinimumSize(600, 500)
+
+        layout = QVBoxLayout(ventana_manual)
+
+        contenido = QTextEdit()
+        contenido.setReadOnly(True)
+        contenido.setHtml("""
+            <h1 style='color: #2196F3;'>Guía de Uso: Gauss-Seidel Solver</h1>
+            <p>Este software resuelve sistemas de ecuaciones lineales de 3x3 de forma iterativa.</p>
+
+            <h3 style='color: #4CAF50;'>1. Cómo ingresar los datos:</h3>
+            <ul>
+                <li>Escriba los coeficientes de las variables <b>x, y, z</b> en los cuadros correspondientes.</li>
+                <li>Use el teclado especial para funciones como <b>√</b> (raíz), <b>π</b>, o <b>e</b>.</li>
+                <li>En la última columna, ingrese el resultado independiente de la ecuación.</li>
+            </ul>
+
+            <h3 style='color: #4CAF50;'>2. Configuración:</h3>
+            <ul>
+                <li><b>Tolerancia:</b> Es el error máximo permitido. Entre más pequeño (ej. 0.00001), más preciso pero tardará más iteraciones.</li>
+                <li><b>Max Iteraciones:</b> Límite de seguridad para evitar que el programa se trabe si el sistema no tiene solución.</li>
+            </ul>
+
+            <h3 style='color: #FF9800;'>⚠️ Recomendaciones de Funcionamiento:</h3>
+            <ul>
+                <li><b>Diagonal Dominancia:</b> Para que el método funcione, el número de la diagonal principal debe ser mayor a la suma de los otros números de su fila. El programa intentará <b>reordenar las filas automáticamente</b> por ti.</li>
+                <li>Si el programa indica que <i>"No es diagonal dominante"</i>, significa que el sistema podría divergir (los números se vuelven infinitos).</li>
+                <li><b>Sintaxis:</b> Si escribe funciones a mano, use <b>sqrt(x)</b> para raíces y <b>**2</b> para potencias.</li>
+            </ul>
+        """)
+
+        layout.addWidget(contenido)
+        btn_cerrar = QPushButton("Entendido")
+        btn_cerrar.clicked.connect(ventana_manual.accept)
+        layout.addWidget(btn_cerrar)
+    
+        ventana_manual.exec()
